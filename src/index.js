@@ -1,5 +1,5 @@
-/** @jsx createElement */
-import {createElement} from "@bikeshaving/crank/cjs";
-import {renderer} from "@bikeshaving/crank/cjs/dom";
+const m = require('mithril');
 
-renderer.render(<div id="hello">Hello world</div>, document.body);
+const root = document.body;
+
+m.render(root, "Hello World");
