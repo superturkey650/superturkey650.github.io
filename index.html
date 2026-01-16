@@ -1,8 +1,400 @@
-<html>
-    <body>
-        <script src="https://unpkg.com/mithril/mithril.js"></script>
-        <p>This is a webpage</p>
-        <script src="bin/app.js"></script>
-        <p>Above me is the crank js content</p>
-    </body>
+<!--
+  Simple responsive blog using Tailwind (CDN).
+  Multi-page: index.html (home list), about.html, and one page per article.
+
+  How to use:
+  1) Create a folder and put these files inside it.
+  2) Open index.html in your browser.
+  3) Duplicate an article page to add more posts.
+-->
+
+<!-- ===================== index.html ===================== -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="A simple responsive blog built with Tailwind." />
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-900">
+    <!-- Top Nav -->
+    <header class="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+        <a href="index.html" class="flex items-center gap-2 font-semibold tracking-tight">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-white">MB</span>
+          <span>My Blog</span>
+        </a>
+
+        <!-- Desktop links -->
+        <nav class="hidden items-center gap-6 text-sm font-medium md:flex">
+          <a href="index.html" class="text-slate-900 hover:text-slate-600">Articles</a>
+          <a href="about.html" class="text-slate-900 hover:text-slate-600">About Me</a>
+        </nav>
+
+        <!-- Mobile menu button -->
+        <button
+          id="menuBtn"
+          class="inline-flex items-center justify-center rounded-xl border bg-white px-3 py-2 text-sm font-medium shadow-sm hover:bg-slate-50 md:hidden"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+        >
+          <span class="sr-only">Open menu</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="hidden border-t bg-white md:hidden">
+        <div class="mx-auto max-w-5xl px-4 py-3">
+          <div class="flex flex-col gap-2 text-sm font-medium">
+            <a href="index.html" class="rounded-xl px-3 py-2 hover:bg-slate-50">Articles</a>
+            <a href="about.html" class="rounded-xl px-3 py-2 hover:bg-slate-50">About Me</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <main class="mx-auto max-w-5xl px-4 py-10">
+      <section class="rounded-3xl border bg-white p-6 shadow-sm sm:p-10">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h1 class="text-2xl font-semibold tracking-tight sm:text-4xl">Articles</h1>
+            <p class="mt-2 max-w-prose text-slate-600">Notes, tutorials, and thoughts. Each article opens on its own page.</p>
+          </div>
+          <div class="w-full sm:w-72">
+            <label class="sr-only" for="search">Search</label>
+            <div class="relative">
+              <input
+                id="search"
+                type="search"
+                placeholder="Search articles..."
+                class="w-full rounded-2xl border bg-slate-50 px-4 py-2 pr-10 text-sm outline-none ring-slate-300 focus:bg-white focus:ring-2"
+              />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400">
+                <path fill-rule="evenodd" d="M10.5 3a7.5 7.5 0 1 0 4.412 13.566l3.761 3.761a.75.75 0 1 0 1.06-1.06l-3.761-3.761A7.5 7.5 0 0 0 10.5 3Zm-6 7.5a6 6 0 1 1 12 0 6 6 0 0 1-12 0Z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Article list -->
+      <section class="mt-8">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <!-- Card 1 -->
+          <a href="articles/getting-started.html" class="group rounded-3xl border bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+            <div class="flex items-center justify-between gap-3">
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Guide</p>
+              <time class="text-xs text-slate-500" datetime="2026-01-10">Jan 10, 2026</time>
+            </div>
+            <h2 class="mt-3 text-lg font-semibold tracking-tight group-hover:text-slate-700">Getting Started with This Blog</h2>
+            <p class="mt-2 text-sm text-slate-600">How this project is structured, how to add articles, and how to deploy it.</p>
+            <div class="mt-4 inline-flex items-center gap-2 text-sm font-medium">
+              Read article
+              <span class="transition group-hover:translate-x-0.5">→</span>
+            </div>
+          </a>
+
+          <!-- Card 2 -->
+          <a href="articles/test.html" class="group rounded-3xl border bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+            <div class="flex items-center justify-between gap-3">
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Design</p>
+              <time class="text-xs text-slate-500" datetime="2026-01-12">Jan 12, 2026</time>
+            </div>
+            <h2 class="mt-3 text-lg font-semibold tracking-tight group-hover:text-slate-700">Responsive Design Checklist</h2>
+            <p class="mt-2 text-sm text-slate-600">A quick checklist for building layouts that feel great on mobile and desktop.</p>
+            <div class="mt-4 inline-flex items-center gap-2 text-sm font-medium">
+              Read article
+              <span class="transition group-hover:translate-x-0.5">→</span>
+            </div>
+          </a>
+
+          <!-- Card 3 -->
+          <a href="articles/tailwind-tips.html" class="group rounded-3xl border bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+            <div class="flex items-center justify-between gap-3">
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Tailwind</p>
+              <time class="text-xs text-slate-500" datetime="2026-01-15">Jan 15, 2026</time>
+            </div>
+            <h2 class="mt-3 text-lg font-semibold tracking-tight group-hover:text-slate-700">Tailwind Tips I Actually Use</h2>
+            <p class="mt-2 text-sm text-slate-600">Utility patterns, component ideas, and a few tricks to keep your HTML tidy.</p>
+            <div class="mt-4 inline-flex items-center gap-2 text-sm font-medium">
+              Read article
+              <span class="transition group-hover:translate-x-0.5">→</span>
+            </div>
+          </a>
+
+          <!-- Card 4 -->
+          <a href="articles/notes-on-writing.html" class="group rounded-3xl border bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+            <div class="flex items-center justify-between gap-3">
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Writing</p>
+              <time class="text-xs text-slate-500" datetime="2026-01-16">Jan 16, 2026</time>
+            </div>
+            <h2 class="mt-3 text-lg font-semibold tracking-tight group-hover:text-slate-700">Notes on Writing Consistently</h2>
+            <p class="mt-2 text-sm text-slate-600">A small system for turning ideas into posts without overthinking it.</p>
+            <div class="mt-4 inline-flex items-center gap-2 text-sm font-medium">
+              Read article
+              <span class="transition group-hover:translate-x-0.5">→</span>
+            </div>
+          </a>
+        </div>
+
+        <p id="noResults" class="mt-8 hidden rounded-2xl border bg-white p-5 text-sm text-slate-600">
+          No articles match your search.
+        </p>
+      </section>
+
+      <footer class="mt-16 pb-10 text-center text-sm text-slate-500">
+        <p>© <span id="year"></span> My Blog. Built with Tailwind.</p>
+      </footer>
+    </main>
+
+    <script>
+      // Mobile menu toggle
+      const btn = document.getElementById('menuBtn');
+      const menu = document.getElementById('mobileMenu');
+      btn?.addEventListener('click', () => {
+        const isOpen = !menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+
+      // Year
+      document.getElementById('year').textContent = String(new Date().getFullYear());
+
+      // Simple search/filter for article cards
+      const search = document.getElementById('search');
+      const cards = Array.from(document.querySelectorAll('section a.group'));
+      const noResults = document.getElementById('noResults');
+
+      function normalize(s) {
+        return (s || '').toLowerCase().trim();
+      }
+
+      function applyFilter() {
+        const q = normalize(search.value);
+        let shown = 0;
+        cards.forEach((card) => {
+          const text = normalize(card.textContent);
+          const match = q === '' || text.includes(q);
+          card.classList.toggle('hidden', !match);
+          if (match) shown += 1;
+        });
+        noResults.classList.toggle('hidden', shown !== 0);
+      }
+
+      search?.addEventListener('input', applyFilter);
+    </script>
+  </body>
 </html>
+
+<!-- ===================== about.html ===================== -->
+<!--
+  Save the block below as about.html
+-->
+
+<!--
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me • My Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="About the author." />
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-900">
+    <header class="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+        <a href="index.html" class="flex items-center gap-2 font-semibold tracking-tight">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-white">MB</span>
+          <span>My Blog</span>
+        </a>
+        <nav class="hidden items-center gap-6 text-sm font-medium md:flex">
+          <a href="index.html" class="text-slate-900 hover:text-slate-600">Articles</a>
+          <a href="about.html" class="text-slate-900 hover:text-slate-600">About Me</a>
+        </nav>
+        <button
+          id="menuBtn"
+          class="inline-flex items-center justify-center rounded-xl border bg-white px-3 py-2 text-sm font-medium shadow-sm hover:bg-slate-50 md:hidden"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+        >
+          <span class="sr-only">Open menu</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+      <div id="mobileMenu" class="hidden border-t bg-white md:hidden">
+        <div class="mx-auto max-w-5xl px-4 py-3">
+          <div class="flex flex-col gap-2 text-sm font-medium">
+            <a href="index.html" class="rounded-xl px-3 py-2 hover:bg-slate-50">Articles</a>
+            <a href="about.html" class="rounded-xl px-3 py-2 hover:bg-slate-50">About Me</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-4 py-10">
+      <section class="rounded-3xl border bg-white p-6 shadow-sm sm:p-10">
+        <h1 class="text-2xl font-semibold tracking-tight sm:text-4xl">About Me</h1>
+        <p class="mt-3 max-w-prose text-slate-600">
+          Hi! I’m <span class="font-medium text-slate-900">Your Name</span>. I write about design, development, and whatever I’m learning.
+          This blog is a tiny, fast, static site built with Tailwind.
+        </p>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-3xl border bg-slate-50 p-6">
+            <h2 class="text-base font-semibold">What I’m into</h2>
+            <ul class="mt-3 list-disc space-y-1 pl-5 text-sm text-slate-700">
+              <li>Building clean UI</li>
+              <li>Writing small tools</li>
+              <li>Learning in public</li>
+            </ul>
+          </div>
+          <div class="rounded-3xl border bg-slate-50 p-6">
+            <h2 class="text-base font-semibold">Find me</h2>
+            <ul class="mt-3 space-y-2 text-sm">
+              <li><span class="text-slate-500">Email:</span> you@example.com</li>
+              <li><span class="text-slate-500">GitHub:</span> github.com/you</li>
+              <li><span class="text-slate-500">Twitter:</span> @you</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer class="mt-16 pb-10 text-center text-sm text-slate-500">
+        <p>© <span id="year"></span> My Blog.</p>
+      </footer>
+    </main>
+
+    <script>
+      const btn = document.getElementById('menuBtn');
+      const menu = document.getElementById('mobileMenu');
+      btn?.addEventListener('click', () => {
+        const isOpen = !menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+      document.getElementById('year').textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>
+-->
+
+<!-- ===================== Article Template ===================== -->
+<!--
+  Create a folder named "articles".
+  Duplicate this template for each post, e.g. articles/getting-started.html
+-->
+
+<!--
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Getting Started with This Blog • My Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="How this project is structured, how to add articles, and how to deploy it." />
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-900">
+    <header class="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+        <a href="../index.html" class="flex items-center gap-2 font-semibold tracking-tight">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-white">MB</span>
+          <span>My Blog</span>
+        </a>
+        <nav class="hidden items-center gap-6 text-sm font-medium md:flex">
+          <a href="../index.html" class="text-slate-900 hover:text-slate-600">Articles</a>
+          <a href="../about.html" class="text-slate-900 hover:text-slate-600">About Me</a>
+        </nav>
+        <button
+          id="menuBtn"
+          class="inline-flex items-center justify-center rounded-xl border bg-white px-3 py-2 text-sm font-medium shadow-sm hover:bg-slate-50 md:hidden"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+        >
+          <span class="sr-only">Open menu</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+      <div id="mobileMenu" class="hidden border-t bg-white md:hidden">
+        <div class="mx-auto max-w-5xl px-4 py-3">
+          <div class="flex flex-col gap-2 text-sm font-medium">
+            <a href="../index.html" class="rounded-xl px-3 py-2 hover:bg-slate-50">Articles</a>
+            <a href="../about.html" class="rounded-xl px-3 py-2 hover:bg-slate-50">About Me</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-4 py-10">
+      <article class="rounded-3xl border bg-white p-6 shadow-sm sm:p-10">
+        <div class="flex flex-wrap items-center gap-2 text-sm text-slate-600">
+          <a href="../index.html" class="hover:text-slate-900">← Back to Articles</a>
+          <span aria-hidden="true">•</span>
+          <time datetime="2026-01-10">Jan 10, 2026</time>
+          <span aria-hidden="true">•</span>
+          <span class="rounded-full border bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-700">Guide</span>
+        </div>
+
+        <h1 class="mt-4 text-2xl font-semibold tracking-tight sm:text-4xl">Getting Started with This Blog</h1>
+        <p class="mt-3 max-w-prose text-slate-600">
+          This is a static blog: the homepage lists posts, and each post is its own HTML page.
+          Tailwind is loaded via CDN to keep things simple.
+        </p>
+
+        <hr class="my-8" />
+
+        <div class="prose prose-slate max-w-none">
+          <h2>Folder structure</h2>
+          <pre><code>your-blog/
+  index.html
+  about.html
+  articles/
+    getting-started.html
+    responsive-design.html
+    tailwind-tips.html
+    notes-on-writing.html</code></pre>
+
+          <h2>Adding a new post</h2>
+          <ol>
+            <li>Duplicate an existing article file.</li>
+            <li>Update the title, date, and content.</li>
+            <li>Add a new card on <code>index.html</code> linking to it.</li>
+          </ol>
+
+          <h2>Deploy</h2>
+          <p>
+            You can deploy as-is to GitHub Pages, Netlify, or any static host.
+          </p>
+        </div>
+      </article>
+
+      <footer class="mt-16 pb-10 text-center text-sm text-slate-500">
+        <p>© <span id="year"></span> My Blog.</p>
+      </footer>
+    </main>
+
+    <script>
+      const btn = document.getElementById('menuBtn');
+      const menu = document.getElementById('mobileMenu');
+      btn?.addEventListener('click', () => {
+        const isOpen = !menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+      document.getElementById('year').textContent = String(new Date().getFullYear());
+    </script>
+  </body>
+</html>
+-->
+

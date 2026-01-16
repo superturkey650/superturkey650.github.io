@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Me • My Blog</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<meta name="description" content="About the author." />
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+<header class="sticky top-0 z-50 border-b bg-white/80 backdrop-blur">
+<div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+<a href="index.html" class="flex items-center gap-2 font-semibold tracking-tight">
+<span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-white">MB</span>
+<span>My Blog</span>
+</a>
+<nav class="hidden items-center gap-6 text-sm font-medium md:flex">
+<a href="index.html" class="text-slate-900 hover:text-slate-600">Articles</a>
+<a href="about.html" class="text-slate-900 hover:text-slate-600">About Me</a>
+</nav>
+<button
+id="menuBtn"
+class="inline-flex items-center justify-center rounded-xl border bg-white px-3 py-2 text-sm font-medium shadow-sm hover:bg-slate-50 md:hidden"
+aria-expanded="false"
+aria-controls="mobileMenu"
+>
+<span class="sr-only">Open menu</span>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+</svg>
+</button>
+</div>
+<div id="mobileMenu" class="hidden border-t bg-white md:hidden">
+<div class="mx-auto max-w-5xl px-4 py-3">
+<div class="flex flex-col gap-2 text-sm font-medium">
+<a href="index.html" class="rounded-xl px-3 py-2 hover:bg-slate-50">Articles</a>
+<a href="about.html" class="rounded-xl px-3 py-2 hover:bg-slate-50">About Me</a>
+</div>
+</div>
+</div>
+</header>
+
+
+<main class="mx-auto max-w-5xl px-4 py-10">
+<section class="rounded-3xl border bg-white p-6 shadow-sm sm:p-10">
+<h1 class="text-2xl font-semibold tracking-tight sm:text-4xl">About Me</h1>

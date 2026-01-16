@@ -1,0 +1,73 @@
+<!doctype html>
+</div>
+</div>
+</header>
+
+
+<main class="mx-auto max-w-5xl px-4 py-10">
+<article class="rounded-3xl border bg-white p-6 shadow-sm sm:p-10">
+<div class="flex flex-wrap items-center gap-2 text-sm text-slate-600">
+<a href="../index.html" class="hover:text-slate-900">← Back to Articles</a>
+<span aria-hidden="true">•</span>
+<time datetime="2026-01-10">Jan 10, 2026</time>
+<span aria-hidden="true">•</span>
+<span class="rounded-full border bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-700">Guide</span>
+</div>
+
+
+<h1 class="mt-4 text-2xl font-semibold tracking-tight sm:text-4xl">Getting Started with This Blog</h1>
+<p class="mt-3 max-w-prose text-slate-600">
+This is a static blog: the homepage lists posts, and each post is its own HTML page.
+Tailwind is loaded via CDN to keep things simple.
+</p>
+
+
+<hr class="my-8" />
+
+
+<div class="prose prose-slate max-w-none">
+<h2>Folder structure</h2>
+<pre><code>your-blog/
+index.html
+about.html
+articles/
+getting-started.html
+responsive-design.html
+tailwind-tips.html
+notes-on-writing.html</code></pre>
+
+
+<h2>Adding a new post</h2>
+<ol>
+<li>Duplicate an existing article file.</li>
+<li>Update the title, date, and content.</li>
+<li>Add a new card on <code>index.html</code> linking to it.</li>
+</ol>
+
+
+<h2>Deploy</h2>
+<p>
+You can deploy as-is to GitHub Pages, Netlify, or any static host.
+</p>
+</div>
+</article>
+
+
+<footer class="mt-16 pb-10 text-center text-sm text-slate-500">
+<p>© <span id="year"></span> My Blog.</p>
+</footer>
+</main>
+
+
+<script>
+const btn = document.getElementById('menuBtn');
+const menu = document.getElementById('mobileMenu');
+btn?.addEventListener('click', () => {
+const isOpen = !menu.classList.contains('hidden');
+menu.classList.toggle('hidden');
+btn.setAttribute('aria-expanded', String(!isOpen));
+});
+document.getElementById('year').textContent = String(new Date().getFullYear());
+</script>
+</body>
+</html>
